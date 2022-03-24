@@ -1,6 +1,7 @@
 import mysql from "mysql";
 import dotenv from "dotenv";
 dotenv.config();
+
 let connection = mysql.createConnection({
   host: process.env.DATABASE,
   user: "root",
@@ -12,4 +13,3 @@ export let connect = connection.connect((err) => {
   if (err) return new Error(err.message);
   console.log("Mysql connected ...");
 });
-
