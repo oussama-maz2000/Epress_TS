@@ -1,15 +1,17 @@
-import mysql from "mysql";
+import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
-
-let connection = mysql.createConnection({
-  host: process.env.DATABASE,
-  user: "root",
-  password: "",
-  port: 3306,
-  database: process.env.DBNAME,
-});
-export let connect = connection.connect((err) => {
-  if (err) return new Error(err.message);
-  console.log("Mysql connected ...");
-});
+const URL: any = process.env.DATABASE;
+export function connect() {
+  let DB: object = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
+  try {
+    let client = mongoose.connect(URL, DB);
+    console.log("database connected ...");
+  } catch (err: any) {
+    console.log(err.message);
+  }
+}

@@ -2,9 +2,11 @@ import joi from "joi";
 
 export const signVerification = async (data: object) => {
   const schema = joi.object({
+    id: joi.number(),
     username: joi.string().min(3).max(20),
     email: joi.string().email(),
     password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+    confirmpassword: joi.ref("password"),
   });
   return schema.validate(data);
 };
