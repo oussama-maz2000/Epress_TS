@@ -3,8 +3,8 @@ import mysql from "mysql";
 import dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import { connect } from "./Model/connection";
-import { route } from "./Controllers/routers";
-
+import { route } from "./Controllers/routersUser";
+import { route_store } from "./Controllers/routersStore";
 const app = express();
 app.use(express.json());
 dotenv.config();
@@ -12,6 +12,7 @@ dotenv.config();
 connect();
 app.set("view engine", "hbs");
 app.use(route);
+app.use("/store", route_store);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send("welcome ");
