@@ -32,12 +32,12 @@ route_store.get("/tshirt", async (req: Request, res: Response) => {
 //for Jeans
 route_store.get("/jeans", async (req: Request, res: Response) => {
   try {
-    let data = await userStore.find({ category: "Jeans" });
-    res.status(200).send(data);
+    let data = await userStore.find({ category: "Jeans" }).then((resolve) => {
+      res.status(200).send(resolve);
+    });
   } catch (error: any) {
     res.status(404).send("page not found");
   }
 });
-
 
 export { route_store };
