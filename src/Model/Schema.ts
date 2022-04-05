@@ -30,7 +30,7 @@ const schemaStore = new mongoose.Schema({
 
   title: { type: String },
 
-  price: { type: Number },
+  price: { type: String },
 
   size: { type: Number },
 
