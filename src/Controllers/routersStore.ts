@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { userStore } from "../Model/Schema";
 import HandleErr from "../Errors/HandleErr";
+
 const route_store = express.Router();
 route_store.get("", async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -18,7 +19,6 @@ route_store.get(
       let data = await userStore.find({ category: "Shoes" });
       res.status(200).send(data);
     } catch (error: any) {
-      // res.status(404).send("page not found");
       next(new HandleErr(error.message, 404));
     }
   }
@@ -32,7 +32,6 @@ route_store.get(
       let data = await userStore.find({ category: "T-shirt" });
       res.status(200).send(data);
     } catch (error: any) {
-      //res.status(404).send("page not found");
       next(new HandleErr(error.message, 404));
     }
   }
@@ -47,7 +46,6 @@ route_store.get(
         res.status(200).send(resolve);
       });
     } catch (error: any) {
-      //res.status(404).send("page not found");
       next(new HandleErr(error.message, 404));
     }
   }
@@ -60,7 +58,6 @@ route_store.get(
       let data = await userStore.find({ category: "sport" });
       res.status(200).send(data);
     } catch (error: any) {
-      //res.status(401).send(error);
       next(new HandleErr(error.message, 404));
     }
   }
@@ -72,12 +69,49 @@ route_store.get(
     try {
       let last_id = await userStore.findOne().sort({ id: -1 });
       let id_Product = +req.params.id;
-      if (last_id > id_Product) {
+      if (id_Product > last_id.id)
+        return next(new HandleErr("this product doesn't exist", 404));
+      else {
         let data = await userStore.findOne({ id: id_Product });
         res.status(200).send(data);
-      } else return next(new HandleErr("error happend please try again ", 404));
+      }
     } catch (error: any) {
-      console.log(error.message);
+      next(new HandleErr("error happend", 404));
+    }
+  }
+);
+
+interface ClientData {
+  id: Number;
+  title: String;
+  price: String;
+  size: [String];
+  category: String;
+  description: String;
+  image: [String];
+  available: Boolean;
+}
+
+route_store.post(
+  "/insertData",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      let { id } = await userStore.findOne().sort({ id: -1 });
+      let client_data: ClientData = {
+        id: id + 1,
+        title: req.body.title,
+        price: req.body.price,
+        size: req.body.size,
+        category: req.body.category,
+        description: req.body.description,
+        image: req.body.image,
+        available: req.body.available,
+      };
+      let newProduct = await new userStore(client_data);
+      await newProduct.save();
+      res.status(200).json({ status: "succes", dataID: id + 1 });
+    } catch (error: any) {
+      next(new HandleErr(error.message, 404));
     }
   }
 );
