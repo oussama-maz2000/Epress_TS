@@ -12,7 +12,7 @@ dotenv.config();
 
 connect();
 //app.set("view engine", "hbs");
-app.use(route);
+
 app.use("/store", route_store);
 app.use(globaleErr);
 
