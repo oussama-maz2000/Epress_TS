@@ -16,7 +16,7 @@ connect();
 app.use("/store", route_store);
 app.use(globaleErr);
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
+app.get("", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send("welcome ");
 });
 
