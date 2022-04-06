@@ -28,17 +28,17 @@ let schemaUser = new mongoose.Schema({
 const schemaStore = new mongoose.Schema({
   id: { type: Number },
 
-  title: { type: String },
+  title: { type: String, unique: true, required: true },
 
-  price: { type: String },
+  price: { type: String, required: true },
 
-  size: { type: Number },
+  size: { type: [String], required: true },
 
-  category: { type: String },
+  category: { type: String, required: true },
 
   description: { type: String },
 
-  image: { type: [String] },
+  image: { type: [String], required: true },
 
   available: { type: Boolean },
 });
