@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
-const URL: any = process.env.DATABASE;
+const URL: any = process.env.DATABASE_URL;
 export function connect() {
   let DB: object = {
     useNewUrlParser: true,
