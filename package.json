@@ -7,7 +7,7 @@
     "dev": "nodemon src/app.ts",
     "ts:build": "",
     "prestart": "npm run ts:build",
-    "start": "node dist/app.js",
+    "start": "node app.ts",
     "debug":"ndb app.ts"
   },
   "author": "ts",
