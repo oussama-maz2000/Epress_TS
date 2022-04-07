@@ -1,0 +1,1 @@
+{"version":3,"file":"HandleErr.d.ts","sourceRoot":"","sources":["../../src/Errors/HandleErr.ts"],"names":[],"mappings":"AAEA,cAAM,SAAU,SAAQ,KAAK;IAC3B,UAAU,EAAE,MAAM,CAAC;IACnB,OAAO,EAAE,MAAM,CAAC;gBACJ,OAAO,EAAE,MAAM,EAAE,UAAU,EAAE,MAAM;CAMhD;AACD,eAAe,SAAS,CAAC"}
