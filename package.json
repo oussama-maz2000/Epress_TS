@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon app.ts",
     "ts:build": "rm -rf dist && tsc",
     "prestart": "npm run ts:build",
     "start": "node dist/app.js",
-    "debug":"ndb app.ts"
+    "debug": "ndb app.ts"
+  },
+  "engines": {
+    "node": "16.4.2"
   },
   "author": "ts",
   "license": "ISC",
