@@ -2,9 +2,9 @@
   "name": "stor_ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
-    "dev": "nodemon app.ts",
+    "dev": "nodemon src/app.ts",
     "ts:build": "rm -rf dist && tsc",
     "prestart": "npm run ts:build",
     "start": "node dist/app.js",

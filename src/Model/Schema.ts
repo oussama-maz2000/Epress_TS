@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const schemaStore = new mongoose.Schema({
+export const schemaStore = new mongoose.Schema({
   id: { type: Number },
 
   title: { type: String, unique: true, required: true },
